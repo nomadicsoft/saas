@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
+/public/assets/*
 /public/storage
+/resources/views/spa.blade.php
 /storage/*.key
 /vendor
 /.idea
