@@ -40,6 +40,8 @@
 
 <script>
 
+    import {mapMutations} from "vuex";
+
     export default {
         name: 'App',
 
@@ -49,5 +51,14 @@
         data: () => ({
             //
         }),
+        methods: {
+          ...mapMutations(['setToken'])
+        },
+        mounted() {
+            const token = localStorage.getItem('token')
+            if (token) {
+                this.setToken(token);
+            }
+        }
     };
 </script>

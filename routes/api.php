@@ -1,12 +1,22 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+/**
+ * Public routes
+ */
+Route::post('login', [AuthController::class, 'login']);
+
+
+/**
+ * Auth routes
+ */
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::resource('users', UsersController::class)->only('index');
+    Route::get('users/auth', [UsersController::class, 'auth']);
 });
 
-Route::resource('users', UsersController::class)->only('index');

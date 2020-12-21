@@ -35,4 +35,11 @@ class UsersController extends Controller
     {
         //
     }
+
+    ///
+    ///
+    public function auth(Request $request)
+    {
+        return $request->user();
+    }
 }
