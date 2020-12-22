@@ -22,7 +22,7 @@
         <v-divider></v-divider>
 
         <v-list dense>
-            <v-list-item link :to="{name: 'admin.users'}">
+            <v-list-item link :to="{name: 'admin.users.index'}">
                 <v-list-item-icon>
                     <v-icon>mdi-account</v-icon>
                 </v-list-item-icon>

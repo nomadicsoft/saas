@@ -25,8 +25,13 @@ const routes = [
     },
     {
         path: '/admin/users',
-        name: 'admin.users',
-        component: () => import(/* webpackChunkName: "about" */ '../views/admin/Users.vue')
+        name: 'admin.users.index',
+        component: () => import(/* webpackChunkName: "admin.users.index" */ '../views/admin/users/Index.vue')
+    },
+    {
+        path: '/admin/users/:id',
+        name: 'admin.users.show',
+        component: () => import(/* webpackChunkName: "admin.users.show" */ '../views/admin/users/Show.vue')
     }
 
 

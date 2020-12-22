@@ -23,7 +23,7 @@
         <v-spacer></v-spacer>
 
         <v-btn
-            :to="{name: 'admin.users'}"
+            :to="{name: 'admin.users.index'}"
             text
         >
             <span class="mr-2">Dashboard</span>

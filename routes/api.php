@@ -16,7 +16,7 @@ Route::post('login', [AuthController::class, 'login']);
  * Auth routes
  */
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::resource('users', UsersController::class)->only('index');
+    Route::resource('users', UsersController::class)->only('index', 'show');
     Route::get('users/auth', [UsersController::class, 'auth']);
 });
 
