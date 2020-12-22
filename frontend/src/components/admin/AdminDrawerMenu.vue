@@ -37,7 +37,7 @@
 
 <script>
     export default {
-        name: "AdminMenu",
+        name: "AdminDrawerMenu",
         data () {
             return {
                 drawer: false,
