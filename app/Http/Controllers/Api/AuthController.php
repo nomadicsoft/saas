@@ -27,6 +27,11 @@ class AuthController extends Controller
             ]);
         }
 
-        return $user->createToken('my-app-token')->plainTextToken;
+        $user->append(['primary_role_name', 'redirect_link']);
+
+        return response()->json([
+            'user' => $user,
+            'token' => $user->createToken('my-app-token')->plainTextToken,
+        ]);
     }
 }

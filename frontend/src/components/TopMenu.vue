@@ -22,19 +22,16 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn
-            :to="{name: 'admin.users.index'}"
-            text
-        >
-            <span class="mr-2">Dashboard</span>
-            <v-icon>mdi-account</v-icon>
-        </v-btn>
+        <auth-user-dropdown v-if="$store.state.auth.token" />
+        <v-btn text :to="{name: 'login'}" v-else>Login</v-btn>
     </v-app-bar>
 </template>
 
 <script>
+    import AuthUserDropdown from "./AuthUserDropdown";
     export default {
         name: "top-menu",
+        components: {AuthUserDropdown},
         data: function () {
             return {}
         },

@@ -1,5 +1,6 @@
 const state = {
     token: null,
+    user: {},
 };
 
 const getters = {
@@ -14,6 +15,20 @@ const mutations = {
             window.axios.defaults.headers.common.Authorization = `Bearer ${token}`
         })
     },
+    setUser: async (state, user) => {
+        return new Promise(() => {
+            state.user = user
+            localStorage.setItem('user', user)
+        })
+    },
+    clearUserData: async () => {
+        return new Promise(resolve => {
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
+            resolve('ok')
+        })
+    },
+
 };
 
 const actions = {
@@ -21,13 +36,17 @@ const actions = {
         const {email, password } = params
         return new Promise((resolve, reject) => {
             window.axios.post('/api/login', {email, password}).then(async res => {
-                console.log(res.data)
-                await commit('setToken', res.data)
-                resolve('OK')
+                console.log(res.data.token)
+                await commit('setToken', res.data.token)
+                await commit('setUser', res.data.user)
+                resolve(res.data.user)
             }).catch(e => {
                 reject(e)
             })
         })
+    },
+    logout: async ({ commit }, ) => {
+        return await commit('clearUserData')
     },
 };
 

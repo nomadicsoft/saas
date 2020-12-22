@@ -35,7 +35,6 @@
 /*    import LoginWithGithub from "../components/LoginWithGithub";
     import LoginWithGoogle from "../components/LoginWithGoogle";*/
 import {mapActions} from "vuex";
-import User from "../models/User";
 
     export default {
         name: "Login",
@@ -50,9 +49,9 @@ import User from "../models/User";
         methods: {
             handleLogin() {
                 const {email, password} = this;
-                this.login({email, password}).then(async () => {
-                    this.users = await User.get()
-                    console.log(this.users);
+                this.login({email, password}).then(async (res) => {
+                    console.log(res)
+                    this.$router.push({path: res.redirect_link});
                 })
             },
 
