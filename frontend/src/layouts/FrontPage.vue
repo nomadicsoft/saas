@@ -13,7 +13,7 @@
     import TopMenu from "../components/TopMenu";
 
     export default {
-        name: "admin-dashboard-page",
+        name: "front-page",
         components: {TopMenu},
         data: function () {
             return {}

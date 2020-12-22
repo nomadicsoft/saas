@@ -18,7 +18,7 @@ const mutations = {
     setUser: async (state, user) => {
         return new Promise(() => {
             state.user = user
-            localStorage.setItem('user', user)
+            localStorage.setItem('user', JSON.stringify(user))
         })
     },
     clearUserData: async () => {

@@ -13,8 +13,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = \App\Models\User::factory()->create(['email' => 'admin@example.com']);
-        $user->assignRole('admin');
+        $admin = \App\Models\User::factory()->create(['email' => 'admin@example.com']);
+        $admin->assignRole('admin');
+        $user = \App\Models\User::factory()->create(['email' => 'user@example.com']);
         \App\Models\User::factory(10)->create();
     }
 }

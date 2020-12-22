@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import guest from "./middleware/guest";
 import store from '../store';
 import middlewarePipeline from "./middleware/middlewarePipeline";
+import auth from "./middleware/auth";
+import isAdmin from "./middleware/isAdmin";
 
 Vue.use(VueRouter)
 
@@ -25,21 +27,36 @@ const routes = [
         path: '/login',
         name: 'login',
         component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
-        meta: {
-            middleware: [
-                guest
-            ]
-        }
+        meta: { middleware: [guest]}
+    },
+    {
+        path: '/403',
+        name: '403',
+        component: () => import(/* webpackChunkName: "login" */ '../views/static/403.vue'),
+    },
+    {
+        path: '/dashboard',
+        name: 'dashboard.index',
+        component: () => import(/* webpackChunkName: "admin.users.index" */ '../views/dashboard/Index.vue'),
+        meta: { middleware: [auth]}
+    },
+    {
+        path: '/admin',
+        name: 'admin.index',
+        component: () => import(/* webpackChunkName: "admin.users.index" */ '../views/admin/Index.vue'),
+        meta: { middleware: [auth, isAdmin]}
     },
     {
         path: '/admin/users',
         name: 'admin.users.index',
-        component: () => import(/* webpackChunkName: "admin.users.index" */ '../views/admin/users/Index.vue')
+        component: () => import(/* webpackChunkName: "admin.users.index" */ '../views/admin/users/Index.vue'),
+        meta: { middleware: [auth, isAdmin]}
     },
     {
         path: '/admin/users/:id',
         name: 'admin.users.show',
-        component: () => import(/* webpackChunkName: "admin.users.show" */ '../views/admin/users/Show.vue')
+        component: () => import(/* webpackChunkName: "admin.users.show" */ '../views/admin/users/Show.vue'),
+        meta: { middleware: [auth, isAdmin]}
     }
 
 
