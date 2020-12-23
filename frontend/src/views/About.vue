@@ -1,22 +1,16 @@
 <template>
-    <front-page>
-        <v-container>
-            <v-row class="text-center">
-                <v-col cols="12">
-                    <router-link :to="{name: 'home'}">Home</router-link>
-                </v-col>
-            </v-row>
-        </v-container>
-    </front-page>
+    <v-container>
+        <v-row class="text-center">
+            <v-col cols="12">
+                <router-link :to="{name: 'home'}">Home</router-link>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
-    import FrontPage from "../layouts/FrontPage";
 
     export default {
         name: 'about',
-        components: {
-            FrontPage
-        }
     }
 </script>

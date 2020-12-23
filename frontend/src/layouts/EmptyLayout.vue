@@ -1,12 +1,12 @@
 <template>
-        <div>
-            dashboard.index
-        </div>
+    <div>
+
+    </div>
 </template>
 
 <script>
     export default {
-        name: "dashboard-index",
+        name: "empty-layout",
         data: function () {
             return {}
         },

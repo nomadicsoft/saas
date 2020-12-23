@@ -1,43 +1,37 @@
 <template>
-    <admin-dashboard-page>
-        <v-card>
-            <v-card-title>
+    <v-card>
+        <v-card-title>
+            <v-row>
+                <v-col>
+                    {{user.name}}
+                </v-col>
+                <v-col class="text-right">
+                    <v-btn text :to="{name: 'admin.users.index'}">return</v-btn>
+                </v-col>
+            </v-row>
+        </v-card-title>
+        <v-card-text>
+            <v-form>
                 <v-row>
                     <v-col>
-                        {{user.name}}
-                    </v-col>
-                    <v-col class="text-right">
-                        <v-btn text :to="{name: 'admin.users.index'}">return</v-btn>
+                        <v-text-field v-model="user.email" disabled></v-text-field>
                     </v-col>
                 </v-row>
-            </v-card-title>
-            <v-card-text>
-                <v-form>
-                    <v-row>
-                        <v-col>
-                            <v-text-field v-model="user.email" disabled></v-text-field>
-                        </v-col>
-                    </v-row>
-                    <v-row>
-                        <v-col>
-                            <v-text-field v-model="user.created_at" disabled></v-text-field>
-                        </v-col>
-                    </v-row>
-                </v-form>
-            </v-card-text>
-        </v-card>
-    </admin-dashboard-page>
+                <v-row>
+                    <v-col>
+                        <v-text-field v-model="user.created_at" disabled></v-text-field>
+                    </v-col>
+                </v-row>
+            </v-form>
+        </v-card-text>
+    </v-card>
 </template>
 
 <script>
-    import AdminDashboardPage from "../../../layouts/AdminDashboardPage";
     import User from "../../../models/User";
 
     export default {
         name: "users-show",
-        components: {
-            AdminDashboardPage
-        },
         data: function () {
             return {
                 user: {}

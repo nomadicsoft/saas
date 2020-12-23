@@ -1,19 +1,13 @@
 <template>
-    <admin-dashboard-page>
-        <div>
-            admin.Index
-        </div>
-    </admin-dashboard-page>
+    <div>
+        admin.Index
+    </div>
 </template>
 
 <script>
-    import AdminDashboardPage from "../../layouts/AdminDashboardPage";
 
     export default {
         name: "Index",
-        components: {
-          AdminDashboardPage
-        },
         data: function () {
             return {}
         },

@@ -13,7 +13,8 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        component: Home
+        component: Home,
+        meta: { layout: 'front'}
     },
     {
         path: '/about',
@@ -21,42 +22,44 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+        meta: { layout: 'front'}
     },
     {
         path: '/login',
         name: 'login',
-        component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
-        meta: { middleware: [guest]}
+        component: () => import('../views/Login.vue'),
+        meta: { middleware: [guest], layout: 'front'}
     },
     {
         path: '/403',
         name: '403',
-        component: () => import(/* webpackChunkName: "login" */ '../views/static/403.vue'),
+        component: () => import('../views/static/403.vue'),
+        meta: { layout: 'front'}
     },
     {
         path: '/dashboard',
         name: 'dashboard.index',
-        component: () => import(/* webpackChunkName: "admin.users.index" */ '../views/dashboard/Index.vue'),
-        meta: { middleware: [auth]}
+        component: () => import('../views/dashboard/Index.vue'),
+        meta: { middleware: [auth], layout: 'user-dashboard'}
     },
     {
         path: '/admin',
         name: 'admin.index',
-        component: () => import(/* webpackChunkName: "admin.users.index" */ '../views/admin/Index.vue'),
-        meta: { middleware: [auth, isAdmin]}
+        component: () => import('../views/admin/Index.vue'),
+        meta: { middleware: [auth, isAdmin], layout: 'admin-dashboard'}
     },
     {
         path: '/admin/users',
         name: 'admin.users.index',
-        component: () => import(/* webpackChunkName: "admin.users.index" */ '../views/admin/users/Index.vue'),
-        meta: { middleware: [auth, isAdmin]}
+        component: () => import('../views/admin/users/Index.vue'),
+        meta: { middleware: [auth, isAdmin], layout: 'admin-dashboard'}
     },
     {
         path: '/admin/users/:id',
         name: 'admin.users.show',
-        component: () => import(/* webpackChunkName: "admin.users.show" */ '../views/admin/users/Show.vue'),
-        meta: { middleware: [auth, isAdmin]}
+        component: () => import('../views/admin/users/Show.vue'),
+        meta: { middleware: [auth, isAdmin], layout: 'admin-dashboard'}
     }
 
 

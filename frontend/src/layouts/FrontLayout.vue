@@ -1,11 +1,7 @@
 <template>
     <v-main>
         <top-menu />
-        <!--SLOT-->
-        <slot>
-            <!-- This is where the content goes lol -->
-        </slot>
-        <!--SLOT-->
+        <router-view />
     </v-main>
 </template>
 
@@ -13,7 +9,7 @@
     import TopMenu from "../components/TopMenu";
 
     export default {
-        name: "front-page",
+        name: "front-layout",
         components: {TopMenu},
         data: function () {
             return {}

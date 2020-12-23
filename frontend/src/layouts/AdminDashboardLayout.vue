@@ -7,11 +7,7 @@
                     <admin-drawer-menu />
                 </v-flex>
                 <v-flex grow class="px-15">
-                    <!--SLOT-->
-                    <slot>
-                        <!-- This is where the content goes lol -->
-                    </slot>
-                    <!--SLOT-->
+                    <router-view />
                 </v-flex>
             </v-row>
         </v-container>
@@ -23,7 +19,7 @@
     import TopMenu from "../components/TopMenu";
 
     export default {
-        name: "admin-dashboard-page",
+        name: "admin-dashboard-layout",
         components: {TopMenu, AdminDrawerMenu},
         data: function () {
             return {}

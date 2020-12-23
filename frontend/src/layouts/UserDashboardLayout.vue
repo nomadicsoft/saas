@@ -7,11 +7,7 @@
                     <user-drawer-menu />
                 </v-flex>
                 <v-flex grow class="px-15">
-                    <!--SLOT-->
-                    <slot>
-                        <!-- This is where the content goes lol -->
-                    </slot>
-                    <!--SLOT-->
+                    <router-view />
                 </v-flex>
             </v-row>
         </v-container>
@@ -22,7 +18,7 @@
     import UserDrawerMenu from "../components/dashboard/UserDrawerMenu";
     import TopMenu from "../components/TopMenu";
     export default {
-        name: "UserDashboardPage",
+        name: "user-dashboard-layout",
         components: {TopMenu, UserDrawerMenu},
         data: function () {
             return {}

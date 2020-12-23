@@ -1,26 +1,22 @@
 <template>
-    <admin-dashboard-page>
-        <v-data-table
-            :headers="headers"
-            :items="users"
-            :items-per-page="5"
-            class="elevation-1"
-            @click:row="handleClickRow"
-        >
-            <template v-slot:item.created_at="{ item }">
-                {{ item.created_at }} <!--TODO add day.js and default format -->
-            </template>
-        </v-data-table>
-    </admin-dashboard-page>
+    <v-data-table
+        :headers="headers"
+        :items="users"
+        :items-per-page="5"
+        class="elevation-1"
+        @click:row="handleClickRow"
+    >
+        <template v-slot:item.created_at="{ item }">
+            {{ item.created_at }} <!--TODO add day.js and default format -->
+        </template>
+    </v-data-table>
 </template>
 
 <script>
     import User from '../../../models/User';
-    import AdminDashboardPage from "../../../layouts/AdminDashboardPage";
 
     export default {
         name: "users-index",
-        components: {AdminDashboardPage},
         data: function () {
             return {
                 users: [],

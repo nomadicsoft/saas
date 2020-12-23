@@ -25,7 +25,7 @@ class User extends Authenticatable
 
     public function getPrimaryRoleNameAttribute()
     {
-        return optional($this->roles()->first())->name ?? 'user';
+        return optional($this->roles()->orderBy('id')->first())->name ?? 'user';
     }
 
     public function getRedirectLinkAttribute()
