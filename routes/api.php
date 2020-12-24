@@ -21,7 +21,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('users/auth', [UsersController::class, 'auth']);
     Route::resource('users', UsersController::class)->only('index', 'show');
 
-    Route::resource('price-plans', PricePlansController::class)->only('index', 'show');
+    Route::resource('price-plans', PricePlansController::class)->only('index', 'show', 'store', 'update');
 
     Route::get('billing/setup-intent', [BillingController::class, 'getSetupIntent']);
     Route::post('billing/payments', [BillingController::class, 'postPaymentMethods']);

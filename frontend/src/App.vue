@@ -7,7 +7,7 @@
 
 <script>
 
-    import {mapMutations} from "vuex";
+    import {mapActions, mapMutations} from "vuex";
     import SaasSnackbar from "./components/SaasSnackbar";
 
     export default {
@@ -25,14 +25,16 @@
             //
         }),
         methods: {
-          ...mapMutations(['setToken'])
+            ...mapMutations(['setToken']),
+            ...mapActions(['getAuthUser'])
         },
         mounted() {
             const token = localStorage.getItem('token')
             if (token) {
                 this.setToken(token);
             }
-        }
+            this.getAuthUser()
+        },
     };
 </script>
 <style type="text/css">

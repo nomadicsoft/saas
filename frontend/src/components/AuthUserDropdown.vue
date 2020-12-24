@@ -10,11 +10,7 @@
             </v-btn>
         </template>
         <v-list>
-            <!---->
-            <v-list-item :to="{name: 'login'}" class="list-item-clic">
-                <v-list-item-title>Login</v-list-item-title>
-            </v-list-item> <!---->
-            <v-list-item :to="{name: 'admin.users.index'}" class="list-item-clic">
+            <v-list-item :to="{name: 'admin.users.index'}">
                 <v-list-item-title>Dashboard</v-list-item-title>
             </v-list-item>
             <v-list-item  @click="handleLogout">

@@ -30,6 +30,14 @@
                     <v-list-item-title>Home</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+            <v-list-item link :to="{name: 'admin.price-plans.index'}">
+                <v-list-item-icon>
+                    <v-icon>mdi-application-cog</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                    <v-list-item-title>Price Plans</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
             <v-list-item link :to="{name: 'admin.users.index'}">
                 <v-list-item-icon>
                     <v-icon>mdi-account</v-icon>

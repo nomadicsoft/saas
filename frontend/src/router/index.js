@@ -74,6 +74,24 @@ const routes = [
         meta: { middleware: [auth, isAdmin], layout: 'admin-dashboard'}
     },
     {
+        path: '/admin/price-plans',
+        name: 'admin.price-plans.index',
+        component: () => import('../views/admin/price-plans/Index.vue'),
+        meta: { middleware: [auth, isAdmin], layout: 'admin-dashboard'}
+    },
+    {
+        path: '/admin/price-plans/create',
+        name: 'admin.price-plans.create',
+        component: () => import('../views/admin/price-plans/Form.vue'),
+        meta: { middleware: [auth, isAdmin], layout: 'admin-dashboard'}
+    },
+    {
+        path: '/admin/price-plans/:id',
+        name: 'admin.price-plans.edit',
+        component: () => import('../views/admin/price-plans/Form.vue'),
+        meta: { middleware: [auth, isAdmin], layout: 'admin-dashboard'}
+    },
+    {
         path: '/admin/users',
         name: 'admin.users.index',
         component: () => import('../views/admin/users/Index.vue'),

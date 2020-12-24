@@ -16,7 +16,11 @@ class CreatePricePlansTable extends Migration
         Schema::create('price_plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('stripe_id');
+            $table->string('stripe_id')->nullable();
+            $table->boolean('is_active');
+            $table->json('features')->nullable();
+            $table->json('restrictions')->nullable();
+            $table->integer('monthly_price');
             $table->timestamps();
         });
     }
