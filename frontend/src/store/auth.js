@@ -45,6 +45,28 @@ const actions = {
             })
         })
     },
+    getAuthUser({ commit }) {
+        return new Promise((resolve, reject) => {
+                window.axios.get('/api/users/auth').then(async res => {
+                    await commit('setUser', res.data)
+                    resolve(res.data)
+                }).catch(e => {
+                    reject(e)
+                })
+        })
+    },
+    signUp: async ({ commit }, params) => {
+        return new Promise((resolve, reject) => {
+            window.axios.post('/api/register', params).then(async res => {
+                console.log(res.data.token)
+                await commit('setToken', res.data.token)
+                await commit('setUser', res.data.user)
+                resolve(res.data.user)
+            }).catch(e => {
+                reject(e)
+            })
+        })
+    },
     logout: async ({ commit }, ) => {
         return await commit('clearUserData')
     },

@@ -2,16 +2,20 @@
 
 namespace App\Models;
 
+use App\Models\Relations\BelongsToPricePlan;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens, HasRoles;
+    use HasFactory, Notifiable, HasApiTokens, HasRoles, Billable;
+    use BelongsToPricePlan;
 
     protected $guarded = [];
     protected $hidden = [
@@ -30,6 +34,12 @@ class User extends Authenticatable
 
     public function getRedirectLinkAttribute()
     {
-        return $this->hasRole('admin') ? '/admin/users' : '/';
+        if ($this->hasRole('admin')) {
+            return '/admin/users';
+        }
+        if ($this->plan_id !== null) {
+            return '/admin/users';
+        }
+        return '/dashboard/billing/select-plan';
     }
 }

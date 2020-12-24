@@ -32,6 +32,12 @@ const routes = [
         meta: { middleware: [guest], layout: 'front'}
     },
     {
+        path: 'sign-up',
+        name: 'sign-up',
+        component: () => import('../views/SignUp.vue'),
+        meta: { middleware: [guest], layout: 'front'}
+    },
+    {
         path: '/403',
         name: '403',
         component: () => import('../views/static/403.vue'),
@@ -41,6 +47,24 @@ const routes = [
         path: '/dashboard',
         name: 'dashboard.index',
         component: () => import('../views/dashboard/Index.vue'),
+        meta: { middleware: [auth], layout: 'user-dashboard'}
+    },
+    {
+        path: '/dashboard/billing',
+        name: 'dashboard.billing',
+        component: () => import('../views/dashboard/billing/Index.vue'),
+        meta: { middleware: [auth], layout: 'user-dashboard'}
+    },
+    {
+        path: '/dashboard/billing/select-plan',
+        name: 'dashboard.billing.select-plan',
+        component: () => import('../views/dashboard/billing/SelectPlan.vue'),
+        meta: { middleware: [auth], layout: 'user-dashboard'}
+    },
+    {
+        path: '/dashboard/billing/checkout',
+        name: 'dashboard.billing.checkout',
+        component: () => import('../views/dashboard/billing/Checkout.vue'),
         meta: { middleware: [auth], layout: 'user-dashboard'}
     },
     {

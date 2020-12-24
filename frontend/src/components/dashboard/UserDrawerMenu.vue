@@ -31,6 +31,24 @@
                     <v-list-item-title>Dashboard</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+            <v-list-item link :to="{name: 'dashboard.billing'}">
+                <v-list-item-icon>
+                    <v-icon>mdi-credit-card</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                    <v-list-item-title>Billing</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item link :to="{name: 'dashboard.billing.select-plan'}">
+                <v-list-item-icon>
+                    <v-icon>mdi-credit-card</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                    <v-list-item-title>Select a plan</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
         </v-list>
     </v-navigation-drawer>
 </template>
