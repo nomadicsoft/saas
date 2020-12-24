@@ -7,7 +7,7 @@
                     <admin-drawer-menu />
                 </v-flex>
                 <v-flex grow class="px-15">
-                    <router-view />
+                    <slot> <!--CONTENT--> </slot>
                 </v-flex>
             </v-row>
         </v-container>

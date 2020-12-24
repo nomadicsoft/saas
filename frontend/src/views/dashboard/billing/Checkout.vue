@@ -1,27 +1,30 @@
 <template>
-    <v-container fluid>
-        <v-row>
-            <v-col>
-                <v-card class="mx-auto px-15 py-15" flat outlined max-width="800">
-                    <v-card-title>You're subscribing to {{selectedPlan.name}}</v-card-title>
-                    <v-card-text>
-                        <stripe-checkout-card @submit-card="subscribe" />
-                    </v-card-text>
-                </v-card>
-            </v-col>
-        </v-row>
-    </v-container>
+    <user-dashboard-layout>
+        <v-container fluid>
+            <v-row>
+                <v-col>
+                    <v-card class="mx-auto px-15 py-15" flat outlined max-width="800">
+                        <v-card-title>You're subscribing to {{selectedPlan.name}}</v-card-title>
+                        <v-card-text>
+                            <stripe-checkout-card @submit-card="subscribe" />
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+    </user-dashboard-layout>
 </template>
 
 <script>
     import BillingApi from "../../../api/BillingApi";
     import StripeCheckoutCard from "../../../components/StripeCheckoutCard";
     import {mapMutations} from "vuex";
+    import UserDashboardLayout from "../../../layouts/UserDashboardLayout";
 
     export default {
         name: "Checkout",
         components: {
-            StripeCheckoutCard
+            StripeCheckoutCard, UserDashboardLayout
         },
         data: function () {
             return {

@@ -1,5 +1,6 @@
 <template>
-    <v-card class="mx-auto px-15 py-15">
+    <user-dashboard-layout>
+     <v-card class="mx-auto px-15 py-15">
         <v-card-text>
             <div v-if="activePricePlan && activePricePlan.name">
                 Your Plan is: {{activePricePlan.name}}
@@ -34,6 +35,7 @@
         </v-card-text>
 
     </v-card>
+    </user-dashboard-layout>
 </template>
 
 <script>
@@ -41,10 +43,11 @@
     import StripeCheckoutCard from "../../../components/StripeCheckoutCard";
     import {mapActions, mapMutations} from "vuex";
     import PricePlan from "../../../models/PricePlan";
+    import UserDashboardLayout from "../../../layouts/UserDashboardLayout";
 
     export default {
         name: "Index",
-        components: {StripeCheckoutCard},
+        components: {StripeCheckoutCard, UserDashboardLayout},
         data: function () {
             return {
                 paymentMethods: [],

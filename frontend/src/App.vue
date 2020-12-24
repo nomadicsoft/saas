@@ -1,8 +1,6 @@
 <template>
     <v-app>
-        <component :is="layout">
         <router-view/>
-        </component>
         <saas-snackbar />
     </v-app>
 </template>
@@ -10,10 +8,6 @@
 <script>
 
     import {mapMutations} from "vuex";
-    import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
-    import FrontLayout from "./layouts/FrontLayout";
-    import UserDashboardLayout from "./layouts/UserDashboardLayout";
-    import EmptyLayout from "./layouts/EmptyLayout";
     import SaasSnackbar from "./components/SaasSnackbar";
 
     export default {
@@ -25,7 +19,6 @@
         },
         components: {
             SaasSnackbar,
-            AdminDashboardLayout, FrontLayout, UserDashboardLayout, EmptyLayout,
         },
 
         data: () => ({

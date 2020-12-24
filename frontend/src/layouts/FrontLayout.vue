@@ -1,7 +1,7 @@
 <template>
     <v-main>
         <top-menu />
-        <router-view />
+        <slot> <!--CONTENT--> </slot>
     </v-main>
 </template>
 
