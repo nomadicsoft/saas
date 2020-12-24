@@ -10,7 +10,7 @@
             </v-btn>
         </template>
         <v-list>
-            <v-list-item :to="{name: 'admin.users.index'}">
+            <v-list-item :to="{name: dashboardLink}">
                 <v-list-item-title>Dashboard</v-list-item-title>
             </v-list-item>
             <v-list-item  @click="handleLogout">
@@ -21,8 +21,18 @@
 </template>
 
 <script>
+    import {mapState} from "vuex";
+
     export default {
         name: "auth-user-dropdown",
+        computed: {
+            dashboardLink() {
+              return this.user.primary_role_name === 'admin' ? 'admin.index' : 'dashboard.index'
+            },
+            ...mapState({
+                user: state => state.auth.user
+            })
+        },
         data: function () {
             return {}
         },

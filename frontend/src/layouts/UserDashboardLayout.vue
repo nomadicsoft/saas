@@ -1,8 +1,8 @@
 <template>
     <v-main>
         <top-menu/>
-        <v-container fluid class="fill-height">
-            <v-row class="fill-height">
+        <v-container fluid class="fill-height  ma-0 pa-0">
+            <v-row class="fill-height pl-2">
                 <v-flex shrink>
                     <user-drawer-menu />
                 </v-flex>

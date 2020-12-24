@@ -1,8 +1,8 @@
 <template>
     <v-main>
         <top-menu />
-        <v-container fluid class="fill-height">
-            <v-row class="fill-height">
+        <v-container fluid class="fill-height ma-0 pa-0">
+            <v-row class="fill-height pl-2">
                 <v-flex shrink>
                     <admin-drawer-menu />
                 </v-flex>
@@ -21,6 +21,7 @@
     export default {
         name: "admin-dashboard-layout",
         components: {TopMenu, AdminDrawerMenu},
+
         data: function () {
             return {}
         },

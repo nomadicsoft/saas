@@ -40,6 +40,8 @@ class UsersController extends Controller
     ///
     public function auth(Request $request)
     {
-        return $request->user();
+        $user = $request->user();
+        $user->append('primary_role_name');
+        return $user;
     }
 }

@@ -2,9 +2,14 @@
     <user-dashboard-layout>
      <v-card class="mx-auto px-15 py-15">
         <v-card-text>
-            <div v-if="activePricePlan && activePricePlan.name">
-                Your Plan is: {{activePricePlan.name}}
-            </div>
+            <v-row class="mb-5">
+                <v-col  v-if="activePricePlan && activePricePlan.name">
+                    Your Plan is: {{activePricePlan.name}}
+                </v-col>
+                <v-col class="text-right">
+                    <v-btn :to="{name: 'dashboard.billing.select-plan'}">Select Plan</v-btn>
+                </v-col>
+            </v-row>
             <stripe-checkout-card @submit-card="savePaymentMethod" />
 
 

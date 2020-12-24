@@ -9,7 +9,7 @@
                 <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
             </v-list-item-avatar>
 
-            <v-list-item-title>John Leider</v-list-item-title>
+            <v-list-item-title>{{user.name}}</v-list-item-title>
 
             <v-btn
                 icon
@@ -54,8 +54,15 @@
 </template>
 
 <script>
+    import {mapState} from "vuex";
+
     export default {
         name: "UserDrawerMenu",
+        computed: {
+            ...mapState({
+                user: state => state.auth.user
+            })
+        },
         data () {
             return {
                 drawer: false,
