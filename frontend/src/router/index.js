@@ -23,55 +23,67 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-        meta: { layout: 'front'}
+        meta: { }
     },
     {
         path: '/login',
         name: 'login',
         component: () => import('../views/Login.vue'),
-        meta: { middleware: [guest], layout: 'front'}
+        meta: { middleware: [guest]}
     },
     {
         path: 'sign-up',
         name: 'sign-up',
         component: () => import('../views/SignUp.vue'),
-        meta: { middleware: [guest], layout: 'front'}
+        meta: { middleware: [guest]}
     },
     {
         path: '/403',
         name: '403',
         component: () => import('../views/static/403.vue'),
-        meta: { layout: 'front'}
+        meta: { }
     },
     {
         path: '/dashboard',
         name: 'dashboard.index',
         component: () => import('../views/dashboard/Index.vue'),
-        meta: { middleware: [auth], layout: 'user-dashboard'}
+        meta: { middleware: [auth]}
+    },
+    {
+        path: '/dashboard/profile',
+        name: 'dashboard.profile',
+        component: () => import('../views/dashboard/Profile.vue'),
+        meta: { middleware: [auth]}
     },
     {
         path: '/dashboard/billing',
         name: 'dashboard.billing',
         component: () => import('../views/dashboard/billing/Index.vue'),
-        meta: { middleware: [auth], layout: 'user-dashboard'}
+        meta: { middleware: [auth]}
     },
     {
         path: '/dashboard/billing/select-plan',
         name: 'dashboard.billing.select-plan',
         component: () => import('../views/dashboard/billing/SelectPlan.vue'),
-        meta: { middleware: [auth], layout: 'user-dashboard'}
+        meta: { middleware: [auth]}
     },
     {
         path: '/dashboard/billing/checkout',
         name: 'dashboard.billing.checkout',
         component: () => import('../views/dashboard/billing/Checkout.vue'),
-        meta: { middleware: [auth], layout: 'user-dashboard'}
+        meta: { middleware: [auth]}
     },
     {
         path: '/admin',
         name: 'admin.index',
         component: () => import('../views/admin/Index.vue'),
-        meta: { middleware: [auth, isAdmin], layout: 'admin-dashboard'}
+        meta: { middleware: [auth, isAdmin]}
+    },
+    {
+        path: '/admin/profile',
+        name: 'admin.profile',
+        component: () => import('../views/admin/Profile.vue'),
+        meta: { middleware: [auth]}
     },
     {
         path: '/admin/price-plans',

@@ -5,11 +5,16 @@
         permanent
     >
         <v-list-item class="px-2">
-            <v-list-item-avatar>
-                <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+            <v-list-item-avatar size="24">
+                <v-img :src="user.avatar_url"></v-img>
             </v-list-item-avatar>
 
-            <v-list-item-title>{{user.name}}</v-list-item-title>
+            <v-list-item-title>
+                {{user.name}}
+                <v-btn x-small icon :to="{name: 'dashboard.profile'}">
+                    <v-icon x-small>mdi-pencil</v-icon>
+                </v-btn>
+            </v-list-item-title>
 
             <v-btn
                 icon

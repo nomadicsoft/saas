@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1b1c3c2b6a49142319025f1b5fcbbff",
+    "content-hash": "ac2af956d1f6a72fa32234a6d8586acf",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5387,6 +5387,55 @@
                 "symfony"
             ],
             "time": "2020-10-29T14:50:40+00:00"
+        },
+        {
+            "name": "ottaviano/faker-gravatar",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ottaviano/faker-gravatar.git",
+                "reference": "a7e914b0ceb69ab33fd43e007c8e9c920d788e85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ottaviano/faker-gravatar/zipball/a7e914b0ceb69ab33fd43e007c8e9c920d788e85",
+                "reference": "a7e914b0ceb69ab33fd43e007c8e9c920d788e85",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "fzaninotto/faker": "^1.6",
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ottaviano\\Faker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dimitri Gritsajuk",
+                    "email": "gritsajuk.dimitri@gmail.com"
+                }
+            ],
+            "description": "Faker Gravatar image provider",
+            "keywords": [
+                "avatar",
+                "data",
+                "faker",
+                "fixtures",
+                "gravatar",
+                "image"
+            ],
+            "time": "2019-10-06T21:26:13+00:00"
         },
         {
             "name": "phar-io/manifest",
