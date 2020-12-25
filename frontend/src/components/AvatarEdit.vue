@@ -27,7 +27,7 @@
                     thumbnailWidth: 250,
                     maxFilesize: 5,
                     headers: {
-                        Authorization: "Bearer 1|LC8pJHMPzi4q5Tekv9nYD0VihIiQsAVUIv8brBT3"
+                        Authorization: null
                     }
                 }
             }
