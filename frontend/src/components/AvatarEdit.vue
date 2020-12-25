@@ -54,6 +54,10 @@
                 }
             },
         },
+        async mounted() {
+            const token = await localStorage.getItem('token')
+            this.dropzoneOptions.headers.Authorization = "Bearer "+token
+        }
     }
 </script>
 
