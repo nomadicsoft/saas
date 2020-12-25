@@ -1,6 +1,6 @@
 module.exports = {
     "devServer": {
-        "proxy": "http://saas.local"
+        "proxy": process.env.APP_URL
     },
     "outputDir": "../public/assets/",
     "publicPath": process.env.NODE_ENV === 'production'
