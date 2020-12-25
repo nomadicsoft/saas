@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -27,5 +32,45 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $user->createToken('my-app-token')->plainTextToken,
         ]);
+    }
+
+    public function forgotPassword(ForgotPasswordRequest $request)
+    {
+        $attributes = $request->validated();
+        $status = Password::sendResetLink($attributes);
+        return response()->json(['success' => $status === Password::RESET_LINK_SENT]);
+    }
+
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        $attributes =  $request->validated();
+
+        $status = Password::reset(
+            $attributes,
+            function ($user, $password) use ($request) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->save();
+
+                $user->setRememberToken(Str::random(60));
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        return response()->json(['success' => $status]);
+
+
+      /*  $email =  $attributes['email'];
+
+        $hash = DB::table('password_resets')->where('email', $email);
+        if (! Hash::check($attributes['token'], $hash)) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
+        $user = User::where('email',$email)->first();
+        $user->password = Hash::make($attributes['password']);
+        $user->save();
+        return response()->json(['success' => true]);*/
     }
 }

@@ -32,9 +32,21 @@ const routes = [
         meta: { middleware: [guest]}
     },
     {
-        path: 'sign-up',
+        path: '/sign-up',
         name: 'sign-up',
         component: () => import('../views/SignUp.vue'),
+        meta: { middleware: [guest]}
+    },
+    {
+        path: '/forgot-password',
+        name: 'forgot-password',
+        component: () => import('../views/ForgotPassword.vue'),
+        meta: { middleware: [guest]}
+    },
+    {
+        path: '/reset-password',
+        name: 'reset-password',
+        component: () => import('../views/ResetPassword.vue'),
         meta: { middleware: [guest]}
     },
     {

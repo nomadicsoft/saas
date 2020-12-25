@@ -13,5 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('reset-password', function () {
+   dd(request()->all());
+})->name('password.reset');
 Route::any('/{any}', [FrontendController::class,'spa'])->where('any', '^(?!api).*$');
