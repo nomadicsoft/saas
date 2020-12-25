@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
+use App\Http\Requests\SignUpRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,21 @@ class AuthController extends Controller
 
         $user->append(['primary_role_name', 'redirect_link']);
 
+        return response()->json([
+            'user' => $user,
+            'token' => $user->createToken('my-app-token')->plainTextToken,
+        ]);
+    }
+
+    public function signUp(SignUpRequest $request)
+    {
+        $attributes = $request->validated();
+
+        $user = User::create([
+            'email' => $attributes['email'],
+            'password' => Hash::make($attributes['password'])
+        ]);
+        $user->append(['primary_role_name', 'redirect_link']);
         return response()->json([
             'user' => $user,
             'token' => $user->createToken('my-app-token')->plainTextToken,
@@ -59,18 +75,5 @@ class AuthController extends Controller
         );
 
         return response()->json(['success' => $status]);
-
-
-      /*  $email =  $attributes['email'];
-
-        $hash = DB::table('password_resets')->where('email', $email);
-        if (! Hash::check($attributes['token'], $hash)) {
-            abort(Response::HTTP_FORBIDDEN);
-        }
-
-        $user = User::where('email',$email)->first();
-        $user->password = Hash::make($attributes['password']);
-        $user->save();
-        return response()->json(['success' => true]);*/
     }
 }

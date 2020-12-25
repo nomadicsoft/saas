@@ -35,8 +35,9 @@
                         <div>
                             <v-btn @click="handleLogin">Login</v-btn>
                         </div>
-                        <div class="mt-15">
+                        <div class="mt-15 ">
                             <v-btn x-small text :to="{name: 'forgot-password'}">Forgot Password?</v-btn>
+                            <v-btn x-small text :to="{name: 'sign-up'}">Sign Up</v-btn>
                         </div>
                     </div>
                 </v-card-actions>
@@ -66,7 +67,6 @@
             handleLogin() {
                 const {email, password} = this;
                 this.login({email, password}).then(async (res) => {
-                    console.log(res)
                     this.$router.push({path: res.redirect_link});
                 })
             },

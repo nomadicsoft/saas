@@ -22,7 +22,7 @@
                         </v-row>
                         <v-row>
                             <v-col>
-                                <v-btn @click="handleSignUp">Login</v-btn>
+                                <v-btn @click="handleSignUp">Sign Up</v-btn>
                             </v-col>
                             <!--     <v-col>
                                      <login-with-github />
