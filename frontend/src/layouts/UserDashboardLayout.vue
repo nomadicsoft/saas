@@ -1,17 +1,13 @@
 <template>
-    <v-main>
-        <top-menu/>
-        <v-container fluid class="fill-height  ma-0 pa-0">
-            <v-row class="fill-height pl-2">
-                <v-flex shrink>
-                    <user-drawer-menu />
-                </v-flex>
-                <v-flex grow class="px-15">
-                    <slot> <!--CONTENT--> </slot>
-                </v-flex>
-            </v-row>
-        </v-container>
-    </v-main>
+    <div class="d-flex flex-grow-1">
+        <top-menu @toggleDrawer="mini = ! mini"  :is-dashboard="true"  />
+        <user-drawer-menu :mini="mini"  />
+        <v-main>
+            <v-container>
+                <slot> <!--CONTENT--> </slot>
+            </v-container>
+        </v-main>
+    </div>
 </template>
 
 <script>
@@ -21,7 +17,9 @@
         name: "user-dashboard-layout",
         components: {TopMenu, UserDrawerMenu},
         data: function () {
-            return {}
+            return {
+                mini: false,
+            }
         },
     }
 </script>

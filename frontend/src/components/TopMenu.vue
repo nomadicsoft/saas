@@ -3,7 +3,11 @@
         app
         color="primary"
         dark
+        clipped-left
     >
+        <v-app-bar-nav-icon @click="$emit('toggleDrawer')"
+                            v-if="isDashboard"
+        />
         <router-link :to="{name: 'home'}">
             <div class="d-flex align-center">
                 <v-img
@@ -31,6 +35,12 @@
     import AuthUserDropdown from "./AuthUserDropdown";
     export default {
         name: "top-menu",
+        props: {
+            isDashboard: {
+                default: false,
+                type: Boolean
+            }
+        },
         components: {AuthUserDropdown},
         data: function () {
             return {}

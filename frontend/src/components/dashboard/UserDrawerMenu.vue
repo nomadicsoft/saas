@@ -1,11 +1,10 @@
 <template>
     <v-navigation-drawer
-        v-model="drawer"
         :mini-variant.sync="mini"
-        permanent
+        permanent app clipped
     >
         <v-list-item class="px-2">
-            <v-list-item-avatar size="24">
+            <v-list-item-avatar>
                 <v-img :src="user.avatar_url"></v-img>
             </v-list-item-avatar>
 
@@ -15,13 +14,6 @@
                     <v-icon x-small>mdi-pencil</v-icon>
                 </v-btn>
             </v-list-item-title>
-
-            <v-btn
-                icon
-                @click.stop="mini = !mini"
-            >
-                <v-icon>mdi-chevron-left</v-icon>
-            </v-btn>
         </v-list-item>
 
         <v-divider></v-divider>
@@ -63,6 +55,7 @@
 
     export default {
         name: "UserDrawerMenu",
+        props: ['mini'],
         computed: {
             ...mapState({
                 user: state => state.auth.user
@@ -71,7 +64,6 @@
         data () {
             return {
                 drawer: false,
-                mini: false,
             }
         },
     }
