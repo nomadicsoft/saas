@@ -7,7 +7,7 @@
                     <v-form>
                         <v-row>
                             <v-col>
-                                <v-text-field label="Email" v-model="email"/>
+                                <v-text-field  :error-messages="errors.email" label="Email" v-model="email"/>
                             </v-col>
                         </v-row>
 
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    import {mapActions} from "vuex";
+    import {mapActions, mapMutations} from "vuex";
     import FrontLayout from "../layouts/FrontLayout";
     import Api from "../api/Api";
 
@@ -32,15 +32,20 @@
         data: function () {
             return {
                 email: '',
+                errors: {}
             }
         },
         methods: {
             async handleForgotPassword() {
                 const {email} = this;
-                let response = await Api.forgotPassword(email)
-                console.log(response);
+                let response = await Api.forgotPassword(email).catch(e => this.errors = e.response.data.errors)
+                if (response.status === 200) {
+                    this.errors = {}
+                    this.showSnackBar({color: 'success', timeout: 3000, text: 'Password Reset Confirmed'})
+                }
             },
             ...mapActions(['signUp']),
+            ...mapMutations(['showSnackBar']),
         },
     }
 </script>

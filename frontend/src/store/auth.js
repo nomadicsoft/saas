@@ -55,6 +55,11 @@ const actions = {
                 })
         })
     },
+    setUser: async ({ commit },params) => {
+        await commit('setToken', params.token)
+        await commit('setUser',  params.user)
+        return  params.user
+    },
     signUp: async ({ commit }, params) => {
         return new Promise((resolve, reject) => {
             window.axios.post('/api/sign-up', params).then(async res => {

@@ -7,17 +7,17 @@
                     <v-form>
                         <v-row>
                             <v-col>
-                                <v-text-field label="Email" disabled v-model="email"/>
+                                <v-text-field :error-messages="errors.email"  label="Email" disabled v-model="email"/>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col>
-                                <v-text-field label="Password" type="password"  v-model="password"/>
+                                <v-text-field :error-messages="errors.password"  label="Password" type="password"  v-model="password"/>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col>
-                                <v-text-field label="Password Confirmation" type="password"  v-model="password_confirmation"/>
+                                <v-text-field :error-messages="errors.password_confirmation"  label="Password Confirmation" type="password"  v-model="password_confirmation"/>
                             </v-col>
                         </v-row>
                     </v-form>
@@ -33,6 +33,7 @@
 <script>
     import FrontLayout from "../layouts/FrontLayout";
     import Api from "../api/Api";
+    import {mapActions, mapMutations} from "vuex";
 
     export default {
         name: "ResetPassword",
@@ -43,14 +44,26 @@
                 token: '',
                 password: '',
                 password_confirmation: '',
+                errors: {},
             }
         },
         methods: {
             async handleResetPassword() {
                 const {email, password, password_confirmation, token} = this;
-                let response = await Api.resetPassword({email, password, password_confirmation, token})
-                console.log(response);
+                let response = await Api.resetPassword({email, password, password_confirmation, token}).catch(e => this.errors = e.response.data.errors)
+                if (response.status === 200) {
+                    this.errors = {}
+                    console.log(response)
+                    const token = response.data.token;
+                    const user = response.data.user;
+                    this.setUser({user, token}).then(() => {
+                        this.$router.push({path: user.redirect_link})
+                    })
+                    this.showSnackBar({color: 'success', timeout: 3000, text: 'Password Reset Confirmed'})
+                }
             },
+            ...mapActions(['setUser']),
+            ...mapMutations(['showSnackBar'])
         },
         mounted() {
             this.email = this.$route.query.email

@@ -8,12 +8,12 @@
                         <v-form>
                             <v-row>
                                 <v-col>
-                                    <v-text-field label="Email" v-model="email"/>
+                                    <v-text-field :error-messages="errors.email" label="Email" v-model="email"/>
                                 </v-col>
                             </v-row>
                             <v-row>
                                 <v-col>
-                                    <v-text-field type="password" label="Password" v-model="password"/>
+                                    <v-text-field :error-messages="errors.password"  type="password" label="Password" v-model="password"/>
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -60,7 +60,7 @@
             return {
                 email: '',
                 password: '',
-                user: [],
+                errors: {},
             }
         },
         methods: {
@@ -68,7 +68,7 @@
                 const {email, password} = this;
                 this.login({email, password}).then(async (res) => {
                     this.$router.push({path: res.redirect_link});
-                })
+                }).catch(e => this.errors = e.response.data.errors)
             },
 
             ...mapActions(['login']),

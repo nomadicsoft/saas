@@ -74,6 +74,10 @@ class AuthController extends Controller
             }
         );
 
-        return response()->json(['success' => $status]);
+        $user = User::where('email', $attributes['email'])->first(); // Буэ
+        return response()->json([
+            'user' => $user,
+            'token' => $user->createToken('my-app-token')->plainTextToken,
+        ]);
     }
 }

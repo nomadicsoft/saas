@@ -7,17 +7,17 @@
                     <v-form>
                         <v-row>
                             <v-col>
-                                <v-text-field label="Email" v-model="email"/>
+                                <v-text-field  :error-messages="errors.email"  label="Email" v-model="email"/>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col>
-                                <v-text-field type="password" label="Password" v-model="password"/>
+                                <v-text-field  :error-messages="errors.password"  type="password" label="Password" v-model="password"/>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col>
-                                <v-text-field type="password" label="Password" v-model="password_confirmation"/>
+                                <v-text-field type="password" :error-messages="errors.password_confirmation"  label="Password" v-model="password_confirmation"/>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -53,6 +53,7 @@
                 email: '',
                 password: '',
                 password_confirmation: '',
+                errors: {},
                 user: [],
             }
         },
@@ -62,7 +63,7 @@
                 this.signUp({email, password, password_confirmation}).then(async (res) => {
                     console.log(res)
                     this.$router.push({path: res.redirect_link});
-                })
+                }).catch(e => this.errors = e.response.data.errors)
             },
             ...mapActions(['signUp']),
         }
