@@ -13,6 +13,9 @@ class UploadController extends Controller
     {
         $attributes = $request->validated();
         $path = $request->file('file')->store($attributes['directory'] ?? '/images');
-        return Storage::url($path);
+        return response()->json([
+            'url' => Storage::url($path),
+            'path' => $path
+        ]) ;
     }
 }

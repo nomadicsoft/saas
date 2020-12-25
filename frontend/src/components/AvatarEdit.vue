@@ -34,8 +34,7 @@
         },
         methods: {
             handleSuccess(file, res) {
-                console.log(res);
-                this.$emit('input', res);
+                this.$emit('input', res.url);
             },
         },
         watch: {
