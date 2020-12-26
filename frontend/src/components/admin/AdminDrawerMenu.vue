@@ -20,28 +20,12 @@
         <v-divider></v-divider>
 
         <v-list dense>
-            <v-list-item link :to="{name: 'admin.index'}">
+            <v-list-item link :to="link.to" v-for="link in menu" :key="JSON.stringify(link)">
                 <v-list-item-icon>
-                    <v-icon>mdi-home</v-icon>
+                    <v-icon>{{link.icon}}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                    <v-list-item-title>Home</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-            <v-list-item link :to="{name: 'admin.price-plans.index'}">
-                <v-list-item-icon>
-                    <v-icon>mdi-application-cog</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                    <v-list-item-title>Price Plans</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-            <v-list-item link :to="{name: 'admin.users.index'}">
-                <v-list-item-icon>
-                    <v-icon>mdi-account</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                    <v-list-item-title>Users</v-list-item-title>
+                    <v-list-item-title>{{link.text}}</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
         </v-list>
@@ -50,6 +34,7 @@
 
 <script>
     import {mapState} from "vuex";
+    import menu from "./menu";
 
     export default {
         name: "AdminDrawerMenu",
@@ -61,6 +46,7 @@
         },
         data () {
             return {
+                menu: menu,
             }
         },
     }
