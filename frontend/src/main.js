@@ -7,6 +7,8 @@ import vuetify from './plugins/vuetify';
 import 'axios-progress-bar/dist/nprogress.css'
 import {loadProgressBar} from 'axios-progress-bar'
 import i18n from './i18n'
+import _ from 'lodash';
+Object.defineProperty(Vue.prototype, '$_', { value: _ });
 
 Vue.config.productionTip = false
 require('./bootstrap');
