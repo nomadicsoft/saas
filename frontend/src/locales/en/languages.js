@@ -5,4 +5,8 @@ export default {
     zh: 'Chinese',
     jp: 'Japanese',
     de: 'German',
+    pt: 'Portuguese',
+    fr: 'French',
+    ar: 'Arabic',
+    kr: 'Korean',
 }

@@ -45,7 +45,7 @@ export default [
         label: '中文',
     },
     {
-        code: 'ja',
+        code: 'jp',
         flag: 'jp',
         label: '日本語',
     }
