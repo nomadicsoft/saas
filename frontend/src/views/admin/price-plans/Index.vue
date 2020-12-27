@@ -6,6 +6,8 @@
             </v-col>
         </v-row>
         <v-data-table
+            :loading="loading"
+            loading-text="Loading... Please wait"
             :headers="headers"
             :items="pricePlans"
             :items-per-page="5"
@@ -29,6 +31,7 @@
         data: function () {
             return {
                 pricePlans: [],
+                loading: false,
                 headers: [
                     {
                         text: '# ID',
@@ -46,8 +49,9 @@
             }
         },
         async mounted() {
+            this.loading = true
             this.pricePlans = await PricePlan.get()
-            console.log(this.pricePlans);
+            this.loading = false
         },
     }
 </script>

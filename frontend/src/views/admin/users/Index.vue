@@ -1,6 +1,8 @@
 <template>
     <admin-dashboard-layout>
         <v-data-table
+            :loading="loading"
+            loading-text="Loading... Please wait"
             :headers="headers"
             :items="users"
             :items-per-page="5"
@@ -23,6 +25,7 @@
         components: {AdminDashboardLayout},
         data: function () {
             return {
+                loading: false,
                 users: [],
                 headers: [
                     {
@@ -44,8 +47,9 @@
             }
         },
         async mounted() {
+            this.loading = true
             this.users = await User.get()
-            console.log(this.users);
+            this.loading = false
         },
     }
 </script>
