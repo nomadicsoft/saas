@@ -3,8 +3,7 @@
         <v-container>
             <v-row class="text-center">
                 <v-col cols="12">
-
-                    {{ $t('message')}}
+                    {{ $t('languages.en')}}
                     <router-link :to="{name: 'about'}">About</router-link>
                 </v-col>
             </v-row>
