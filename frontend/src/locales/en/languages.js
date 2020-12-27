@@ -1,4 +1,8 @@
 export default {
     en: 'English',
-    es: 'Spanish'
+    es: 'Spanish',
+    ru: 'Russian',
+    zh: 'Chinese',
+    jp: 'Japanese',
+    de: 'German',
 }
