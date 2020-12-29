@@ -19,7 +19,7 @@
                     width="30"
                 />
                 <h3 class="white--text">
-                    Saas
+                    {{appName}}
                 </h3>
             </div>
         </router-link>
@@ -39,6 +39,11 @@
             isDashboard: {
                 default: false,
                 type: Boolean
+            }
+        },
+        computed: {
+            appName() {
+                return process.env.VUE_APP_APP_NAME ? process.env.VUE_APP_APP_NAME : "Saas"
             }
         },
         components: {AuthUserDropdown},

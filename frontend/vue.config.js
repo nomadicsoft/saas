@@ -1,3 +1,6 @@
+console.log(process.env.VUE_APP_APP_NAME)
+console.log(process.env.APP_NAME)
+
 module.exports = {
     "devServer": {
         "proxy": process.env.APP_URL
