@@ -12,10 +12,14 @@ class UploadController extends Controller
     public function store(UploadFileRequest $request)
     {
         $attributes = $request->validated();
-        $path = $request->file('file')->store($attributes['directory'] ?? '/images');
+        $file = $request->file('file');
+        $path = $file->store($attributes['directory'] ?? '/images');
         return response()->json([
             'url' => Storage::url($path),
-            'path' => $path
-        ]) ;
+            'path' => $path,
+            'type' => $file->getMimeType(),
+            'original_name' => $file->getClientOriginalName(),
+            'original_extension' => $file->getClientOriginalExtension(),
+        ]);
     }
 }
