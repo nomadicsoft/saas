@@ -47,4 +47,10 @@ export  default [
         component: () => import('../views/static/403.vue'),
         meta: { }
     },
+    {
+        path: '/privacy-policy',
+        name: 'privacy-policy',
+        component: () => import('../views/static/PrivacyPolicy.vue'),
+        meta: { }
+    },
 ]
