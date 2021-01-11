@@ -17,7 +17,7 @@ class UploadController extends Controller
         return response()->json([
             'url' => Storage::url($path),
             'path' => $path,
-            'type' => $file->getMimeType(),
+            'mime_type' => $file->getMimeType(),
             'original_name' => $file->getClientOriginalName(),
             'original_extension' => $file->getClientOriginalExtension(),
         ]);
