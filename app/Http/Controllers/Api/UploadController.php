@@ -18,7 +18,7 @@ class UploadController extends Controller
             'url' => Storage::url($path),
             'path' => $path,
             'mime_type' => $file->getMimeType(),
-            'original_name' => $file->getClientOriginalName(),
+            'original_name' =>  pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
             'original_extension' => $file->getClientOriginalExtension(),
         ]);
     }
