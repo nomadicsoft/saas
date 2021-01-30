@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
+import './plugins/vue-auth'
 import 'axios-progress-bar/dist/nprogress.css'
 import {loadProgressBar} from 'axios-progress-bar'
 import i18n from './i18n'

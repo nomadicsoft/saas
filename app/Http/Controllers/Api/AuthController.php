@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
-use App\Http\Requests\SignUpRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
@@ -28,14 +29,22 @@ class AuthController extends Controller
         }
 
         $user->append(['primary_role_name', 'redirect_link']);
+        $token = $user->createToken('auth-token')->plainTextToken;
 
         return response()->json([
             'user' => $user,
-            'token' => $user->createToken('my-app-token')->plainTextToken,
+        ])->withHeaders([
+            'Authorization' => $token
         ]);
     }
 
-    public function signUp(SignUpRequest $request)
+    public function logout(Request $request)
+    {
+        auth('sanctum')->user()->tokens()->delete();
+        return response()->json([], 200);
+    }
+
+    public function register(RegisterRequest $request)
     {
         $attributes = $request->validated();
 
@@ -43,10 +52,13 @@ class AuthController extends Controller
             'email' => $attributes['email'],
             'password' => Hash::make($attributes['password'])
         ]);
+        $token = $user->createToken('auth-token')->plainTextToken;
         $user->append(['primary_role_name', 'redirect_link']);
+
         return response()->json([
             'user' => $user,
-            'token' => $user->createToken('my-app-token')->plainTextToken,
+        ])->withHeaders([
+            'Authorization' => $token
         ]);
     }
 

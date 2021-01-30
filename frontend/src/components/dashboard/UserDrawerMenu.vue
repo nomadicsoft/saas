@@ -5,11 +5,11 @@
     >
         <v-list-item class="px-2">
             <v-list-item-avatar>
-                <v-img :src="user.avatar_url"></v-img>
+                <v-img :src="$auth.user().avatar_url"></v-img>
             </v-list-item-avatar>
 
             <v-list-item-title>
-                {{user.name}}
+                {{$auth.user().name}}
                 <v-btn x-small icon :to="{name: 'dashboard.profile'}">
                     <v-icon x-small>mdi-pencil</v-icon>
                 </v-btn>
@@ -33,23 +33,20 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
     import menu from "./menu";
 
     export default {
         name: "UserDrawerMenu",
         props: ['mini'],
-        computed: {
-            ...mapState({
-                user: state => state.auth.user
-            })
-        },
         data () {
             return {
                 drawer: false,
                 menu: menu,
             }
         },
+        mounted() {
+            console.log(this.$auth.user().id)
+        }
     }
 </script>
 

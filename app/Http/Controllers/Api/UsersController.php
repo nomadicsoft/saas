@@ -44,6 +44,6 @@ class UsersController extends Controller
     {
         $user = $request->user();
         $user->append('primary_role_name');
-        return $user;
+        return ['data' => $user];
     }
 }

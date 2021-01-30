@@ -1,7 +1,6 @@
 export default async function auth ({ next  }){
-    const token = await localStorage.getItem('token')
-    const user = await localStorage.getItem('user')
-    if(! token || ! user){
+    const token = await localStorage.getItem('auth_token_default')
+    if(! token ){
         return next({
             name: 'login'
         })

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +14,5 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('reset-password', function () {
-   dd(request()->all());
-})->name('password.reset');
+Route::get('reset-password',function () {return response(42);})->name('password.reset');
 Route::any('/{any}', [FrontendController::class,'spa'])->where('any', '^(?!api).*$');

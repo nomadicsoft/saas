@@ -45,17 +45,12 @@
     import UserDashboardLayout from "../../layouts/UserDashboardLayout";
     import User from "../../models/User";
     import AvatarEdit from "../../components/AvatarEdit";
-    import {mapState} from "vuex";
     export default {
         name: "Profile",
         components: {AvatarEdit, UserDashboardLayout},
-        computed: {
-            ...mapState({
-                user: state => state.auth.user
-            })
-        },
         data: function () {
             return {
+                user: {},
             }
         },
         methods: {
@@ -65,6 +60,7 @@
             }
         },
         mounted() {
+            this.user = this.$auth.user()
         }
     }
 </script>

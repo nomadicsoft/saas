@@ -6,8 +6,6 @@
 </template>
 
 <script>
-
-    import {mapActions, mapMutations} from "vuex";
     import SaasSnackbar from "./components/SaasSnackbar";
 
     export default {
@@ -24,17 +22,6 @@
         data: () => ({
             //
         }),
-        methods: {
-            ...mapMutations(['setToken']),
-            ...mapActions(['getAuthUser'])
-        },
-        mounted() {
-            const token = localStorage.getItem('token')
-            if (token) {
-                this.setToken(token);
-            }
-            this.getAuthUser()
-        },
     };
 </script>
 <style type="text/css">

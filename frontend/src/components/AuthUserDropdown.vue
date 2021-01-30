@@ -21,24 +21,23 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
 
     export default {
         name: "auth-user-dropdown",
         computed: {
             dashboardLink() {
-              return this.user.primary_role_name === 'admin' ? 'admin.index' : 'dashboard.index'
+              return this.$auth.user().primary_role_name === 'admin' ? 'admin.index' : 'dashboard.index'
             },
-            ...mapState({
-                user: state => state.auth.user
-            })
+            auth() {
+                return this.$auth
+            }
         },
         data: function () {
             return {}
         },
         methods: {
             handleLogout() {
-                this.$store.dispatch('logout').then(() => window.location.href = '/')
+               this.$auth.logout()
             },
         }
     }

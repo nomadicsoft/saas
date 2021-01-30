@@ -49,7 +49,6 @@
 <script>
     /*    import LoginWithGithub from "../components/LoginWithGithub";
         import LoginWithGoogle from "../components/LoginWithGoogle";*/
-    import {mapActions} from "vuex";
     import FrontLayout from "../layouts/FrontLayout";
 
     export default {
@@ -64,14 +63,15 @@
             }
         },
         methods: {
-            handleLogin() {
+            async handleLogin() {
                 const {email, password} = this;
-                this.login({email, password}).then(async (res) => {
-                    this.$router.push({path: res.redirect_link});
-                }).catch(e => this.errors = e.response.data.errors)
+                await this.$auth.login({
+                    data: {email, password},
+                    staySignedIn: true,
+                }).catch((error) => {
+                    this.errors = error.response.data.errors;
+                })
             },
-
-            ...mapActions(['login']),
         }
     }
 </script>
