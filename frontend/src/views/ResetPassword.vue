@@ -53,11 +53,11 @@
                 let response = await Api.resetPassword({email, password, password_confirmation, token}).catch(e => this.errors = e.response.data.errors)
                 if (response.status === 200) {
                     this.errors = {}
-                    console.log(response)
-                    const token = response.data.token;
-                    const user = response.data.user;
-                    this.setUser({user, token}).then(() => {
-                        this.$router.push({path: user.redirect_link})
+                    this.$auth.login({
+                        data: {email, password},
+                        staySignedIn: true,
+                    }).catch((error) => {
+                        this.errors = error.response.data.errors;
                     })
                     this.showSnackBar({color: 'success', timeout: 3000, text: 'Password Reset Confirmed'})
                 }
