@@ -46,7 +46,7 @@
 <script>
     import BillingApi from "../../../api/BillingApi";
     import StripeCheckoutCard from "../../../components/StripeCheckoutCard";
-    import {mapActions, mapMutations} from "vuex";
+    import { mapMutations} from "vuex";
     import PricePlan from "../../../models/PricePlan";
     import UserDashboardLayout from "../../../layouts/UserDashboardLayout";
 
@@ -74,11 +74,10 @@
             savePaymentMethod( method ){
                 window.axios.post('/api/billing/payments', {
                     payment_method: method
-                }).then( function(response){
-                    console.log(response)
+                }).then( () => {
                     this.showSnackBar({color: 'success', timeout: 3000, text: 'Billing Method Added Successfully'})
                     this.loadPaymentMethods()
-                }.bind(this));
+                })
             },
             ...mapMutations(['showSnackBar']),
         },
