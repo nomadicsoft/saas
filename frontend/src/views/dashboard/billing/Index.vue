@@ -46,18 +46,13 @@
 <script>
     import BillingApi from "../../../api/BillingApi";
     import StripeCheckoutCard from "../../../components/StripeCheckoutCard";
-    import {mapActions, mapMutations, mapState} from "vuex";
+    import {mapActions, mapMutations} from "vuex";
     import PricePlan from "../../../models/PricePlan";
     import UserDashboardLayout from "../../../layouts/UserDashboardLayout";
 
     export default {
         name: "Index",
         components: {StripeCheckoutCard, UserDashboardLayout},
-        computed: {
-            ...mapState({
-                user: state => state.auth.user
-            })
-        },
         data: function () {
             return {
                 paymentMethods: [],
@@ -86,13 +81,11 @@
                 }.bind(this));
             },
             ...mapMutations(['showSnackBar']),
-            ...mapActions(['getAuthUser'])
         },
         async mounted() {
             this.loadPaymentMethods();
-            if (this.user.price_plan_id) {
-                console.log(this.user)
-                this.activePricePlan = await PricePlan.find(this.user.price_plan_id)
+            if (this.$auth.user().price_plan_id) {
+                this.activePricePlan = await PricePlan.find(this.$auth.user().price_plan_id)
             }
         }
     }

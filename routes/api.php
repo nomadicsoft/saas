@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
  * Public routes
  */
 Route::post('login', [AuthController::class, 'login']);
-Route::post('sign-up', [AuthController::class, 'signUp']);
+Route::get('logout', [AuthController::class, 'logout']);
+Route::post('register', [AuthController::class, 'register']);
 Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('reset-password', [AuthController::class, 'resetPassword']);
 

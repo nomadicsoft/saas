@@ -26,7 +26,7 @@
 
         <v-spacer></v-spacer>
 
-        <auth-user-dropdown v-if="$store.state.auth.token" />
+        <auth-user-dropdown v-if="$auth.user()" />
         <v-btn text :to="{name: 'login'}" v-else>Login</v-btn>
     </v-app-bar>
 </template>

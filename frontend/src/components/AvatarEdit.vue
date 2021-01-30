@@ -54,7 +54,7 @@
             },
         },
         async mounted() {
-            const token = await localStorage.getItem('token')
+            const token = await localStorage.getItem('auth_token_default')
             this.dropzoneOptions.headers.Authorization = "Bearer "+token
         }
     }

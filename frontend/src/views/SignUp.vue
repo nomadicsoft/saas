@@ -39,15 +39,11 @@
 </template>
 
 <script>
-    /*    import LoginWithGithub from "../components/LoginWithGithub";
-        import LoginWithGoogle from "../components/LoginWithGoogle";*/
-    import {mapActions} from "vuex";
     import FrontLayout from "../layouts/FrontLayout";
 
     export default {
         name: "Login",
         components: {FrontLayout},
-        /*        components: {LoginWithGithub, LoginWithGoogle},*/
         data: function () {
             return {
                 email: '',
@@ -58,14 +54,18 @@
             }
         },
         methods: {
-            handleSignUp() {
+            async handleSignUp() {
                 const {email, password, password_confirmation} = this;
-                this.signUp({email, password, password_confirmation}).then(async (res) => {
-                    console.log(res)
-                    this.$router.push({path: res.redirect_link});
+                await this.$auth.register({
+                    data: {email, password, password_confirmation},
+                    success() {
+                        this.$auth.ready();
+                    },
+                    staySignedIn: true,
+                    redirect: {name: 'dashboard.index'},
+
                 }).catch(e => this.errors = e.response.data.errors)
             },
-            ...mapActions(['signUp']),
         }
     }
 </script>

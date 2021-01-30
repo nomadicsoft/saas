@@ -44,23 +44,18 @@
 <script>
     import User from "../../models/User";
     import AvatarEdit from "../../components/AvatarEdit";
-    import {mapState} from "vuex";
     import AdminDashboardLayout from "../../layouts/AdminDashboardLayout";
     export default {
         name: "Profile",
         components: {AdminDashboardLayout, AvatarEdit},
-        computed: {
-            ...mapState({
-                user: state => state.auth.user
-            })
-        },
         data: function () {
             return {
             }
         },
         methods: {
             async handleUpdateProfile() {
-                const user = new User(this.user);
+                let userData = this.$auth.user()
+                let user = new User(userData);
                 this.user = await user.save()
             }
         },

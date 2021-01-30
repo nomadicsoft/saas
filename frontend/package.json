@@ -9,6 +9,7 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
+    "@websanova/vue-auth": "^4.1.1",
     "axios": "^0.21.0",
     "axios-progress-bar": "^1.2.0",
     "core-js": "^3.6.5",
