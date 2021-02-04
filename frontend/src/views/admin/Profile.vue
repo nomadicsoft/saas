@@ -50,6 +50,7 @@
         components: {AdminDashboardLayout, AvatarEdit},
         data: function () {
             return {
+                user: {},
             }
         },
         methods: {
@@ -60,6 +61,7 @@
             }
         },
         mounted() {
+            this.user = this.$auth.user()
         }
     }
 </script>
