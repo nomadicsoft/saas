@@ -19,7 +19,7 @@ Vue.use(auth, {
     router: driverRouterVueRouter,
   },
   options: {
-    rolesKey: 'permissions',
+    rolesKey: 'roles',
     authRedirect: { name: 'auth-signin' },
     notFoundRedirect: { name: 'error-not-found' },
     forbiddenRedirect: { name: 'error-access-denied' },

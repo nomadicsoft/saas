@@ -1,12 +1,11 @@
 import Home from "../views/Home";
-import guest from "./middleware/guest";
 
 export  default [
     {
         path: '/',
         name: 'home',
         component: Home,
-        meta: { layout: 'front'}
+        meta: {  }
     },
     {
         path: '/about',
@@ -21,25 +20,25 @@ export  default [
         path: '/login',
         name: 'login',
         component: () => import('../views/Login.vue'),
-        meta: { middleware: [guest]}
+        meta: { auth: false}
     },
     {
         path: '/sign-up',
         name: 'sign-up',
         component: () => import('../views/SignUp.vue'),
-        meta: { middleware: [guest]}
+        meta: { auth: false }
     },
     {
         path: '/forgot-password',
         name: 'forgot-password',
         component: () => import('../views/ForgotPassword.vue'),
-        meta: { middleware: [guest]}
+        meta: { auth: false }
     },
     {
         path: '/reset-password',
         name: 'reset-password',
         component: () => import('../views/ResetPassword.vue'),
-        meta: { middleware: [guest]}
+        meta: { auth: false }
     },
     {
         path: '/403',

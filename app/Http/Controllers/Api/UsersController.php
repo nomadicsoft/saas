@@ -43,7 +43,7 @@ class UsersController extends Controller
     public function auth(Request $request)
     {
         $user = $request->user();
-        $user->append('primary_role_name');
+        $user->roles = $user->roles()->pluck('name');
         return ['data' => $user];
     }
 }
