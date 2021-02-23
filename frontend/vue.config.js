@@ -4,10 +4,11 @@ module.exports = {
     },
 
     "outputDir": "../public/assets/",
+    "publicPath": "/assets/",
 
-    "publicPath": process.env.NODE_ENV === 'production'
+ /*   "publicPath": process.env.NODE_ENV === 'production'
         ? '/assets/'
-        : '/',
+        : '/',*/
 
     // modify the location of the generated HTML file.
     "indexPath": process.env.NODE_ENV === 'production'
