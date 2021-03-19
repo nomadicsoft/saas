@@ -65,12 +65,17 @@
         methods: {
             async handleLogin() {
                 const {email, password} = this;
-                await this.$auth.login({
-                    data: {email, password},
-                    staySignedIn: true,
-                }).catch((error) => {
-                    this.errors = error.response.data.errors;
-                })
+                this.$auth.login({data: {email, password}, redirect: null})
+                    .then(res => {
+                        let route = res.data.data.roles.findIndex(role => role === 'admin') > -1
+                            ? this.$auth.options.loginData.redirect.admin
+                            : this.$auth.options.loginData.redirect.other
+
+                        this.$router.push(route)
+                    })
+                    .catch((error) => {
+                        this.errors = error.response.data.errors;
+                    })
             },
         }
     }

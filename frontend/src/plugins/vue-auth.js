@@ -33,7 +33,10 @@ Vue.use(auth, {
     loginData: {
       url: '/api/login',
       method: 'POST',
-      redirect: { name: 'dashboard.index' },
+      redirect: {
+            admin: {name: 'admin.index'},
+            other: {name: 'dashboard.index'},
+      },
       fetchUser: true
     },
     logoutData: {
